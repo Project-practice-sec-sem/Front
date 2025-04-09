@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
-import { AiStyles } from '../ Ai-assistant/Ai-assistant.js'
-
+import {AiStyles} from '../ Ai-assistant/Ai-assistant.js'
 
 
 export const AiAssistant = () => {
