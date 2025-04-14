@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
-import { AppBar, IconButton, Toolbar } from "@mui/material";
-import BB from '/public/assets/BB.png'
-import {MainButtonStyles, MetallsButtonStyles} from "../Button/styles.js";
-import {MOUSE_STYLE} from "./MouseStyle.js";
-import {getAppBarStyles} from "./AppBarStyle.js";
+import {AppBar, IconButton, Toolbar} from '@mui/material';
+import BB from '/public/assets/BB.png';
+import {MainButtonStyles, MetallsButtonStyles} from '../Button/styles.js';
+import {MOUSE_STYLE} from './MouseStyle.js';
+import {getAppBarStyles} from './AppBarStyle.js';
 
 export const Header = () => {
     const [visible, setVisible] = useState(true);
@@ -18,8 +18,7 @@ export const Header = () => {
             setIsAtTop(atTop);
             if (atTop) {
                 setVisible(true);
-            }
-            else if (!isHovered) {
+            } else if (!isHovered) {
                 setVisible(false);
             }
         };
@@ -41,19 +40,12 @@ export const Header = () => {
     };
 
     return (
-        <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            style={{ ...MOUSE_STYLE, height: `${HOVER_AREA_HEIGHT}px` }}
-        >
-            <AppBar
-                sx={getAppBarStyles(visible)}
-            >
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+             style={{...MOUSE_STYLE, height: `${HOVER_AREA_HEIGHT}px`}}>
+            <AppBar sx={getAppBarStyles(visible)}>
                 <Toolbar>
-                    <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
-                        <img src={BB} alt="Логотип" style={{width: '40px', height: '40px', objectFit: 'contain'}}
-                        />
-                    </IconButton>
+                    <img src={BB} alt="Логотип"
+                         style={{width: '60px', height: '60px', objectFit: 'contain', marginRight: '16px'}}/>
                     <Button color="inherit" sx={MainButtonStyles}>Главная</Button>
                     <Button color="inherit" sx={MetallsButtonStyles}>Золото</Button>
                     <Button color="inherit" sx={MetallsButtonStyles}>Серебро</Button>
