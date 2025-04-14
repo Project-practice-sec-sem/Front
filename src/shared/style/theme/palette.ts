@@ -1,2 +1,1 @@
-
-export const palette: PalleteOptions = {}
+export const palette: PalleteOptions = {};

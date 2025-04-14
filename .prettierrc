@@ -1,12 +1,22 @@
 {
+  "printWidth": 2000,
+  "tabWidth": 2,
+  "useTabs": false,
   "semi": true,
   "singleQuote": true,
-  "jsxSingleQuote": false,
+  "jsxSingleQuote": true,
+  "trailingComma": "none",
   "bracketSpacing": true,
-  "trailingComma": "all",
-  "endOfLine": "lf",
-  "tabWidth": 4,
-  "printWidth": 150,
   "bracketSameLine": true,
-  "singleAttributePerLine": false
+  "arrowParens": "avoid",
+  "proseWrap": "never",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.{js,jsx,ts,tsx}",
+      "options": {
+        "singleAttributePerLine": false
+      }
+    }
+  ]
 }

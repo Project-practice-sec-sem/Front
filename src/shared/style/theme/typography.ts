@@ -1,1 +1,1 @@
-export const typography: TypographyOptions = {}
+export const typography: TypographyOptions = {};
