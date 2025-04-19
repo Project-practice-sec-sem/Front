@@ -1,7 +1,7 @@
 export const MainButtonStyles = {
-  height: '55px',
-  width: '150px',
-  marginRight: '300px',
+  height: '40px',
+  width: '100px',
+  marginRight: '500px',
   background: 'transparent'
 };
 
@@ -17,4 +17,10 @@ export const ImageStyles = {
   height: '60px',
   objectFit: 'contain',
   marginRight: '16px'
+};
+
+export const seeButton = {
+  height: '40px',
+  width: '100px',
+  background: 'transparent'
 };

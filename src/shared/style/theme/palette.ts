@@ -1,1 +1,5 @@
-export const palette: PalleteOptions = {};
+export const palette = {
+  background: {
+    default: 'rgba(0, 0, 0, 0.3)'
+  }
+};

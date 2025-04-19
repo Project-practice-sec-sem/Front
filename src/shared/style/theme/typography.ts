@@ -1,1 +1,3 @@
-export const typography: TypographyOptions = {};
+export const typography: any = {
+  fontFamily: '"Ubuntu", Arial, sans-serif'
+};
