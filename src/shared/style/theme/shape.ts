@@ -1,2 +1,1 @@
-
-export const shape: ShapeOptions = {}
+export const shape: ShapeOptions = {};
