@@ -4,32 +4,34 @@ import BB from '/public/assets/BB.png';
 import { ImageStyles, MainButtonStyles, MetallsButtonStyles } from '../Button/styles.js';
 import { getAppBarStyles } from './AppBarStyle.js';
 import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '/src/i18n/LangSwitcher.jsx';
 
 export const Header = ({ setSelectedMetal, onHomeClick }) => {
+  const { t } = useTranslation();
   return (
     <AppBar sx={getAppBarStyles}>
       <Toolbar>
         <Box component='img' sx={ImageStyles} src={BB} alt='Логотип'></Box>
-
         <Button color='inherit' sx={MainButtonStyles} onClick={onHomeClick}>
-          Главная
+          {t('header.home')}
         </Button>
         <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Все')}>
-          Металлы
+          {t('header.metals')}
         </Button>
         <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Золото')}>
-          Золото
+          {t('header.gold')}
         </Button>
-
         <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Серебро')}>
-          Серебро
+          {t('header.silver')}
         </Button>
         <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Платина')}>
-          Платина
+          {t('header.platinum')}
         </Button>
         <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Палладий')}>
-          Палладий
+          {t('header.palladium')}
         </Button>
+        <LanguageSwitcher />
       </Toolbar>
     </AppBar>
   );

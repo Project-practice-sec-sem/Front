@@ -1,7 +1,7 @@
 export const MainButtonStyles = {
   height: '40px',
   width: '100px',
-  marginRight: '500px',
+  marginRight: '430px',
   background: 'transparent'
 };
 

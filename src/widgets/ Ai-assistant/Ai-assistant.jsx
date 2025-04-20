@@ -6,6 +6,7 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import { useTranslation } from 'react-i18next';
 
 const NotificationBox = styled(Box)({
   position: 'fixed',
@@ -39,6 +40,7 @@ const ScrollableTable = styled(TableContainer)({
 });
 
 export const AiAssistant = () => {
+  const { t } = useTranslation();
   const notifications = [
     { id: 1, message: 'Золото выросло на 1.2%', time: '10:30' },
     { id: 2, message: 'Серебро упало на 0.8%', time: '09:45' },
@@ -65,7 +67,7 @@ export const AiAssistant = () => {
           textAlign: 'center',
           borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
-        ИИ Ассистент
+        {t('aiAssist.title')}
       </Typography>
 
       <ScrollableTable>

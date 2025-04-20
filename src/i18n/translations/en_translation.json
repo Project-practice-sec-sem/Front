@@ -1,0 +1,24 @@
+{
+  "header": {
+    "home": "Home",
+    "metals": "Metals",
+    "gold": "Gold",
+    "silver": "Silver",
+    "platinum": "Platinum",
+    "palladium": "Palladium"
+  },
+  "table": {
+    "metal": "Metal",
+    "currency": "Currency",
+    "currencyName": "Currency name",
+    "price": "Price/gram",
+    "change": "Change (24h)",
+    "chart": "Chart",
+    "view": "View",
+    "loading": "Loading data...",
+    "noData": "No data to display"
+  },
+  "aiAssist": {
+    "title": "AI Assistant"
+  }
+}

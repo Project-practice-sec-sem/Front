@@ -15,11 +15,15 @@ export const PaperStyle = {
   background: 'rgba(0, 0, 0, 0.4)'
 };
 
-export const TableCellStyle = {
-  width: column.width,
-  fontWeight: 'bold',
-  background: 'rgba(0, 0, 0, 0.5)',
-  color: 'white',
-  fontSize: '0.9rem',
-  boxShadow: 'none'
+export const tableCellStyles = {
+  header: {
+    fontWeight: 'bold',
+    background: 'rgba(0, 0, 0, 0.5)',
+    color: 'white',
+    fontSize: '0.9rem',
+    boxShadow: 'none'
+  },
+  body: {
+    color: 'white'
+  }
 };
