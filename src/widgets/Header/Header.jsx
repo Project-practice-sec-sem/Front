@@ -1,40 +1,38 @@
-import logo from '../../../public/assets/logotype.jpg'
-import Box from '@mui/material/Box';
-import './Header.css'
 import Button from '@mui/material/Button';
-import { MainButtonStyles } from '../Button/styles.js';
-import { MetallsButtonStyles } from '../Button/styles.js';
+import { AppBar, Toolbar } from '@mui/material';
+import BB from '/public/assets/BB.png';
+import { ImageStyles, MainButtonStyles, MetallsButtonStyles } from '../Button/styles.js';
+import { getAppBarStyles } from './AppBarStyle.js';
+import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '/src/shared/config/i18n/LangSwitcher.jsx';
 
-export const Header = () => {
-    return (
-        <Box
-            className = 'header'
-            component="header" sx={{
-            height: '100px',
-            display: 'flex',
-            paddingLeft: '2%',
-            alignItems: 'center',
-            borderBottom: '1px solid #ccc',
-            background: '#363c4c',
-        }}>
-            <Box
-                className = 'logo-img'
-                component="div" sx={{
-                display: 'flex',
-                width: '150px',
-                height: '90px',
-                marginRight: '50px',
-            }}
-            >
-                <img src={logo} alt="Imetalls" style={{width: '150%', height: '100%', marginRight: '130px'}} />
-                <Box component="section" sx={{ display: 'flex', flexFlow: 'row', alignItems: 'end' }}>
-                    <Button variant="contained" sx={MainButtonStyles}>Главная</Button>
-                    <Button variant="contained" sx={MetallsButtonStyles}>Золото</Button>
-                    <Button variant="contained" sx={MetallsButtonStyles}>Серебро</Button>
-                    <Button variant="contained" sx={MetallsButtonStyles}>Палладий</Button>
-                    <Button variant="contained" sx={MetallsButtonStyles}>Платина</Button>
-                </Box>
-            </Box>
-        </Box>
-    );
-}
+export const Header = ({ setSelectedMetal, onHomeClick }) => {
+  const { t } = useTranslation();
+  return (
+    <AppBar sx={getAppBarStyles}>
+      <Toolbar>
+        <Box component='img' sx={ImageStyles} src={BB} alt='Логотип'></Box>
+        <Button color='inherit' sx={MainButtonStyles} onClick={onHomeClick}>
+          {t('header.home')}
+        </Button>
+        <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Все')}>
+          {t('header.metals')}
+        </Button>
+        <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Золото')}>
+          {t('header.gold')}
+        </Button>
+        <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Серебро')}>
+          {t('header.silver')}
+        </Button>
+        <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Платина')}>
+          {t('header.platinum')}
+        </Button>
+        <Button color='inherit' sx={MetallsButtonStyles} onClick={() => setSelectedMetal('Палладий')}>
+          {t('header.palladium')}
+        </Button>
+        <LanguageSwitcher />
+      </Toolbar>
+    </AppBar>
+  );
+};

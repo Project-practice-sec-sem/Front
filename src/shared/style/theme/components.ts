@@ -1,3 +1,3 @@
-import {Components, Theme} from "@mui/material";
+import { Components, Theme } from '@mui/material';
 
-export const components: Components<Omit<Theme, 'components'>> = {}
+export const components: Components<Omit<Theme, 'components'>> = {};
