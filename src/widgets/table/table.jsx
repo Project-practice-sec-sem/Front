@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { seeButton } from '../Button/styles.js';
 import { BoxStyle, PaperStyle, tableCellStyles } from './TableStyles.js';
 import { useTranslation } from 'react-i18next';
+import mockData from '/src/widgets/table/mockData.json';
 
 export const MetalsTable = ({ selectedMetal = 'Все', onViewClick }) => {
   const [data, setData] = useState([]);
@@ -24,20 +25,6 @@ export const MetalsTable = ({ selectedMetal = 'Все', onViewClick }) => {
     const fetchData = async () => {
       try {
         await new Promise(resolve => setTimeout(resolve, 500));
-
-        const mockData = [
-          { metal: 'Золото', currencyAbb: 'USD', currencyName: 'Доллар США', price: '$62.35', change: '+1.2%' },
-          { metal: 'Золото', currencyAbb: 'EUR', currencyName: 'Евро', price: '€57.80', change: '+0.9%' },
-          { metal: 'Золото', currencyAbb: 'RUB', currencyName: 'Российский рубль', price: '5,832 ₽', change: '+1.5%' },
-          { metal: 'Золото', currencyAbb: 'GBP', currencyName: 'Фунт стерлингов', price: '£49.20', change: '+0.7%' },
-          { metal: 'Серебро', currencyAbb: 'USD', currencyName: 'Доллар США', price: '$0.78', change: '-0.8%' },
-          { metal: 'Серебро', currencyAbb: 'EUR', currencyName: 'Евро', price: '€0.72', change: '-1.1%' },
-          { metal: 'Серебро', currencyAbb: 'RUB', currencyName: 'Российский рубль', price: '72.5 ₽', change: '-0.5%' },
-          { metal: 'Палладий', currencyAbb: 'USD', currencyName: 'Доллар США', price: '$45.20', change: '-2.1%' },
-          { metal: 'Палладий', currencyAbb: 'JPY', currencyName: 'Японская йена', price: '¥6,850', change: '-2.3%' },
-          { metal: 'Платина', currencyAbb: 'USD', currencyName: 'Доллар США', price: '$35.10', change: '+0.5%' },
-          { metal: 'Платина', currencyAbb: 'CNY', currencyName: 'Китайский юань', price: '¥250.80', change: '+0.3%' }
-        ];
 
         setData(mockData);
         setFilteredData(mockData);

@@ -5,7 +5,7 @@ import { ImageStyles, MainButtonStyles, MetallsButtonStyles } from '../Button/st
 import { getAppBarStyles } from './AppBarStyle.js';
 import Box from '@mui/material/Box';
 import { useTranslation } from 'react-i18next';
-import { LanguageSwitcher } from '/src/i18n/LangSwitcher.jsx';
+import { LanguageSwitcher } from '/src/shared/config/i18n/LangSwitcher.jsx';
 
 export const Header = ({ setSelectedMetal, onHomeClick }) => {
   const { t } = useTranslation();
