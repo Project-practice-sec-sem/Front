@@ -1,4 +1,4 @@
-export const graphicStyle = {
+export const graphicPageStyle = {
   position: 'absolute',
   right: 80,
   top: 64,

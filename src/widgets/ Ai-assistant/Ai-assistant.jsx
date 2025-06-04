@@ -1,19 +1,19 @@
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import Paper from '@mui/material/Paper';
+import Markdown from 'react-markdown';
 
 const NotificationBox = styled(Box)({
   position: 'fixed',
   left: 20,
   top: 80,
   width: '300px',
-  height: '550px',
+  height: '800px',
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -24,9 +24,10 @@ const NotificationBox = styled(Box)({
   border: 'none'
 });
 
-const ScrollableTable = styled(TableContainer)({
+const ScrollableContent = styled(Box)({
   flex: 1,
   overflowY: 'auto',
+  padding: '16px',
   '&::-webkit-scrollbar': {
     width: '6px'
   },
@@ -39,21 +40,56 @@ const ScrollableTable = styled(TableContainer)({
   }
 });
 
+const AdvicePaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  color: 'white',
+  '& h2, & h3, & h4': {
+    color: 'white',
+    marginTop: '0.5em',
+    marginBottom: '0.5em'
+  },
+  '& ul, & ol': {
+    paddingLeft: '1.5em'
+  },
+  '& li': {
+    marginBottom: '0.5em'
+  },
+  '& strong': {
+    color: theme.palette.primary.light
+  }
+}));
+
 export const AiAssistant = () => {
   const { t } = useTranslation();
-  const notifications = [
-    { id: 1, message: 'Золото выросло на 1.2%', time: '10:30' },
-    { id: 2, message: 'Серебро упало на 0.8%', time: '09:45' },
-    { id: 3, message: 'Платина стабилизировалась', time: '08:15' },
-    { id: 4, message: 'Новый рекорд по палладию', time: '07:30' },
-    { id: 5, message: 'Изменение котировок Rh', time: '06:20' },
-    { id: 6, message: 'Анализ рынка завершен', time: '05:10' },
-    { id: 7, message: 'Анализ рынка завершен', time: '05:10' },
-    { id: 8, message: 'Анализ рынка завершен', time: '05:10' },
-    { id: 9, message: 'Анализ рынка завершен', time: '05:10' },
-    { id: 10, message: 'Анализ рынка завершен', time: '05:10' },
-    { id: 11, message: 'Анализ рынка завершен', time: '05:10' }
-  ];
+  const [advice, setAdvice] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchAdvice = async () => {
+      try {
+        const response = await fetch('http://10.13.76.55:8000/ai-advice/');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setAdvice(data.advice);
+      } catch (err) {
+        console.error('Error fetching advice:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAdvice();
+
+    // Опционально: обновляем данные каждые X секунд
+    const intervalId = setInterval(fetchAdvice, 1800000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <NotificationBox component='section'>
@@ -70,41 +106,21 @@ export const AiAssistant = () => {
         {t('aiAssist.title')}
       </Typography>
 
-      <ScrollableTable>
-        <Table size='small' sx={{ tableLayout: 'fixed' }}>
-          <TableBody>
-            {notifications.map(notification => (
-              <TableRow
-                key={notification.id}
-                hover
-                sx={{
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.08)'
-                  }
-                }}>
-                <TableCell
-                  sx={{
-                    color: 'white',
-                    fontSize: '0.8rem',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-                    py: 1.5,
-                    px: 2
-                  }}>
-                  <div>{notification.message}</div>
-                  <div
-                    style={{
-                      color: 'rgba(255, 255, 255, 0.6)',
-                      fontSize: '0.7rem',
-                      marginTop: '4px'
-                    }}>
-                    {notification.time}
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </ScrollableTable>
+      {loading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          <CircularProgress color='inherit' size={24} />
+        </Box>
+      ) : error ? (
+        <Alert severity='error' sx={{ margin: 2 }}>
+          Failed to load data: {error}
+        </Alert>
+      ) : (
+        <ScrollableContent>
+          <AdvicePaper elevation={0}>
+            <Markdown>{advice}</Markdown>
+          </AdvicePaper>
+        </ScrollableContent>
+      )}
     </NotificationBox>
   );
 };

@@ -1,40 +1,56 @@
 import { useState } from 'react';
-import { Header } from '../widgets/Header/Header.jsx';
-import { MetalsTable } from '../widgets/table/table.jsx';
-import { ChartPage } from '../pages/graphic.jsx';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import { theme } from '../shared/style/theme/index.ts';
-import { AiAssistant } from '../widgets/ Ai-assistant/Ai-assistant.jsx';
-import { Footer } from '../widgets/Footer/Footer.jsx';
-const App = () => {
+import { Header } from '../widgets/Header/Header';
+import { MetalsTable } from '../widgets/table/table';
+import { AiAssistant } from '/src/widgets/ Ai-assistant/Ai-assistant.jsx';
+import { ChartsSidebar } from '../widgets/Graphics/graphic';
+import { theme } from '../shared/style/theme';
+import ChartsLayout from '../pages/ChartsLayout';
+import ChartPage from '../pages/graphicPage.jsx';
+
+const AppWrapper = () => {
   const [selectedMetal, setSelectedMetal] = useState('Все');
-  const [showChart, setShowChart] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const navigate = useNavigate();
 
   const handleHomeClick = () => {
-    setShowChart(false);
     setSelectedMetal('Все');
+    navigate('/');
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <>
       <Header setSelectedMetal={setSelectedMetal} onHomeClick={handleHomeClick} />
       <AiAssistant />
-      {showChart ? (
-        <ChartPage metalData={selectedRow} />
-      ) : (
-        <MetalsTable
-          selectedMetal={selectedMetal}
-          onViewClick={row => {
-            setSelectedRow(row);
-            setShowChart(true);
-          }}
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <>
+              <MetalsTable selectedMetal={selectedMetal} />
+              <ChartsSidebar />
+            </>
+          }
         />
-      )}
-      <Footer />
+        <Route path='/charts' element={<ChartsLayout />}>
+          <Route path=':metal' element={<ChartPage />} />
+          <Route index element={<ChartPage />} />
+        </Route>
+      </Routes>
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Routes>
+        <Route path='*' element={<AppWrapper />} />
+      </Routes>
     </ThemeProvider>
   );
 };
+
 export default App;

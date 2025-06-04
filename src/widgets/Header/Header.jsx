@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import { AppBar, Toolbar } from '@mui/material';
-import BB from '/public/assets/BB.png';
+import logo from '/public/assets/logo (1).png';
 import { ImageStyles, MainButtonStyles, MetallsButtonStyles } from '../Button/styles.js';
 import { getAppBarStyles } from './AppBarStyle.js';
 import Box from '@mui/material/Box';
@@ -12,7 +12,7 @@ export const Header = ({ setSelectedMetal, onHomeClick }) => {
   return (
     <AppBar sx={getAppBarStyles}>
       <Toolbar>
-        <Box component='img' sx={ImageStyles} src={BB} alt='Логотип'></Box>
+        <Box component='img' sx={ImageStyles} src={logo} alt='Логотип'></Box>
         <Button color='inherit' sx={MainButtonStyles} onClick={onHomeClick}>
           {t('header.home')}
         </Button>

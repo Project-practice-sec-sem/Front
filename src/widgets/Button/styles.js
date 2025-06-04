@@ -13,8 +13,8 @@ export const MetallsButtonStyles = {
 };
 
 export const ImageStyles = {
-  width: '60px',
-  height: '60px',
+  width: '80px',
+  height: '30px',
   objectFit: 'contain',
   marginRight: '16px'
 };
@@ -22,5 +22,9 @@ export const ImageStyles = {
 export const seeButton = {
   height: '40px',
   width: '100px',
-  background: 'transparent'
+  background: 'transparent',
+  boxShadow: 'none',
+  '&:hover': {
+    boxShadow: 'none' // Убирает тень при наведении
+  }
 };

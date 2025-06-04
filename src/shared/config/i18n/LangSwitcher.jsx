@@ -20,7 +20,7 @@ export const LanguageSwitcher = () => {
         onClick={changeLanguage}
         color='inherit'
         sx={{
-          ml: '450px',
+          ml: '400px',
           '&:hover': {
             backgroundColor: 'rgba(255, 255, 255, 0.1)'
           }
